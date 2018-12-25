@@ -10,8 +10,22 @@
 	<script src="main.js"></script>
 </head>
 
-<body>
+<body id="top" class="grid-container">
+	<form>
+		<input type="text" placeholder="Hours">
+		<input type="text" placeholder="Minutes">
+		<input type="text" placeholder="Seconds">
+		<input type="submit" placeholder="Submit" value="Submit">
+	</form>
 
+	<button id="setBtn" onclick="setTime()"></button>
+	<button id="startBtn" onclick="start()"></button>
+	<button id="resetBtn" onclick="reset()"></button>
+
+
+	<div class="PZ-Display-Container">
+		<!-- Create new PZ everytime abv button is pressed and populate a display here -->
+	</div>
 </body>
 
 </html>
