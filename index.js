@@ -1,12 +1,14 @@
 'use strict'; // Enforce use of strict verion of JavaScript
 
+// Utility functions
+const log = (dat) => console.log(dat);
+
 function setTime() {
 	// Construct a duration object and convert all time to milliseconds
-	// User can set time of up to seconds precision level, and up to hours
+	// User can set time of up to seconds precision level, and up to 59 mins and 59 seconds
 	duration = {
 		's': parseInt(document.getElementById('s'), 10) * 1000, // Seconds
 		'm': parseInt(document.getElementById('m'), 10) * 1000 * 60, // Minutes
-		'h': parseInt(document.getElementById('h'), 10) * 1000 * 60 * 60, // Hours
 	}
 	let totalTime = 0;
 	duration.forEach(time => totalTime += duration[time]); // Get the total time by looping through all the keys in object
@@ -24,8 +26,9 @@ function reset() {
 
 const setCurTime = () => (document.getElementById('cur-time').innerHTML = `The current time now is: ${Date.now()}`);
 
-function start() {
-	stdPZ().then(stdBreak);
+async function start() {
+	await stdPZ();
+	await stdBreak();
 }
 
 const stdPZ = () =>
@@ -48,36 +51,16 @@ const stdBreak = () =>
 window.addEventListener('load', () => {
 	setCurTime(); // Set current time the moment the page loads
 	setInterval(setCurTime, 1000); // Call function to set Current Time every second
-	countdown(Date.now() + 10000);
+	// countdown(Date.now() + 10000);
+	// countdown(Date.now() + 4000);
+	cool();
 });
 
-function countdown(endTIme) {
-	// Every second, minus date.now from it and display the difference in the display
-	setInterval(() => show_diff(endTIme - Date.now()), 1000);
+// The count down does not start immediately due to the wait. So do smth similiar to window load call.
+const countdown = (endTIme) => {
+	show_diff(endTIme - Date.now());
+	setInterval(() => show_diff(endTIme - Date.now()), 1000)
 };
-
-const log = (dat) => console.log(dat);
-
-function show_diff(diff) {
-	if (diff > 0) {
-		let s, m, h;
-		h = Math.floor(diff / 1000 / 60 / 60); // Round down to nearest integer
-		h = (h > 1) ? h : 0;
-		
-		m = Math.floor(diff / 1000 / 60);
-		m = (m > 1) ? m : 0;
-
-		s = Math.floor(diff / 1000);
-		s = (s > 1) ? s : 0;
-
-		applyState(s, m, h);
-	}
-	else {
-		document.getElementById('alert').innerHTML = 'Time is up'; // Display alert
-
-		// Stop interval in countdown
-	}
-}
 
 function applyState(s, m, h) {
 	// Function for applying the time values into the elements
@@ -94,4 +77,43 @@ function set_time(type, time) {
 		case 2: case 'h': document.getElementById('hrs').innerHTML = time; break;
 		default: console.log('Error! Invalid arguement passed into set_time function');
 	}
+}
+
+function cool() {
+	var fiveMinutes = 60 * 5;
+	startTimer(fiveMinutes);
+};
+
+function startTimer(duration) {
+	let diff, minutes, seconds, start = Date.now();
+	function timer() {
+		// get the number of seconds that have elapsed since 
+		// startTimer() was called
+		diff = duration - (((Date.now() - start) / 1000) | 0);
+
+		// does the same job as parseInt truncates the float
+		minutes = (diff / 60) | 0;
+		seconds = (diff % 60) | 0;
+
+		minutes = minutes < 10 ? "0" + minutes : minutes;
+		seconds = seconds < 10 ? "0" + seconds : seconds;
+
+		set_time('s', seconds);
+		set_time('m', minutes);
+
+		if (diff <= 0) {
+			// add one second so that the count down starts at the full duration
+			// example 05:00 not 04:59
+
+			// Put here??
+			document.getElementById('alert').innerHTML = 'Time is up'; // Display alert
+			// Stop interval in countdown
+
+
+			start = Date.now() + 1000;
+		}
+	};
+	// we don't want to wait a full second before the timer starts
+	timer();
+	setInterval(timer, 1000);
 }
