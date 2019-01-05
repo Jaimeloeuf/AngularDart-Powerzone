@@ -2,12 +2,14 @@
 <html>
 
 <head>
+	<title>PowerZone</title>
+
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PowerZone</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-	<script src="main.js"></script>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+	<script src="index.js"></script>
 </head>
 
 <body id="top" class="grid-container">
@@ -23,8 +25,10 @@
 	<button id="resetBtn" onclick="reset()"></button>
 
 
-	<div class="PZ-Display-Container">
+	<div id="PZ-Display-Container">
 		<!-- Create new PZ everytime abv button is pressed and populate a display here -->
+
+		<span id="cur-time"></span>
 	</div>
 </body>
 
