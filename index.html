@@ -21,26 +21,31 @@
 
 	<form id="create-new-pz">
 		<br>
+		The values will be assumed to 0 if none is entered<br>
 		<input type="number" placeholder="Hours">
-		<input type="number" placeholder="Minutes">
+		<input type="number" placeholder="Minutes" autofocus>
 		<input type="number" placeholder="Seconds">
+		<input type="text" placeholder="Name?">
 		<br><br>
 		<button id="setBtn" onclick="setTime()">Set Time</button>
 		<button id="startBtn" onclick="start()">Start PZ</button>
 		<button id="resetBtn" onclick="reset()">Reset fields</button>
 		<br><br>
+		
+		Standard Powerzone: 45 Min PowerZone + 15 Min Break
+		<button onclick="start_std_pz();">Start Standard PowerZone</button>
+
+		<br><br>
 	</form>
 
 
-	<!-- Standard Powerzone: 45 Min PowerZone + 15 Min Break
-		<button onclick="start_std_pz();">Start Standard PowerZone</button> -->
 
 	<div id="PZ-Container">
 		<!-- Create new PZ everytime abv button is pressed and populate a display here -->
 
 
 		Current Zone is: id<span id="zone-type"></span><br>
-		<table>
+		<table id="PZ-table">
 			<tr>
 				<th>ID</th>
 				<th>Mins</th>
@@ -51,7 +56,7 @@
 				<td><span id="id">1</span><br></td>
 				<td><span id="min"></span><br></td>
 				<td><span id="sec"></span><br></td>
-				<td><span id="alert">Pending</span><br></td>
+				<td><span id="status">Pending</span><br></td>
 			</tr>
 		</table>
 	</div>

@@ -40,8 +40,13 @@ a, a:link, a:visited, a:hover, a:active {
 .clock { grid-area: clock; }
 #create-new-pz { grid-area: create-pz; }
 #PZ-Container { grid-area: pzs; }
-#PZ-Container > table {
-	border: #f46bb1;
+#PZ-Container > table, th, td {
+	border: 1px solid #f46bb1;
+	border-collapse: collapse;
+}
+th, td {
+  padding: 0.3em 1em;
+  text-align: center;
 }
 
 .footer {
