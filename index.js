@@ -25,8 +25,6 @@ function reset() {
 const setCurTime = () => (document.getElementById('cur-time').innerHTML = `The current time now is: ${Date.now()}`);
 
 function start() {
-	setCurTime(); // Set current time the moment the page loads
-	setInterval(setCurTime, 1000); // Call function to set Current Time every second
 	stdPZ().then(stdBreak);
 }
 
@@ -47,4 +45,53 @@ const stdBreak = () =>
 		}, 15 * 60 * 1000); // 15 min timer
 	});
 
-window.addEventListener('load', start);
+window.addEventListener('load', () => {
+	setCurTime(); // Set current time the moment the page loads
+	setInterval(setCurTime, 1000); // Call function to set Current Time every second
+	countdown(Date.now() + 10000);
+});
+
+function countdown(endTIme) {
+	// Every second, minus date.now from it and display the difference in the display
+	setInterval(() => show_diff(endTIme - Date.now()), 1000);
+};
+
+const log = (dat) => console.log(dat);
+
+function show_diff(diff) {
+	if (diff > 0) {
+		let s, m, h;
+		h = Math.floor(diff / 1000 / 60 / 60); // Round down to nearest integer
+		h = (h > 1) ? h : 0;
+		
+		m = Math.floor(diff / 1000 / 60);
+		m = (m > 1) ? m : 0;
+
+		s = Math.floor(diff / 1000);
+		s = (s > 1) ? s : 0;
+
+		applyState(s, m, h);
+	}
+	else {
+		document.getElementById('alert').innerHTML = 'Time is up'; // Display alert
+
+		// Stop interval in countdown
+	}
+}
+
+function applyState(s, m, h) {
+	// Function for applying the time values into the elements
+	// All the arguements are optional in a sense. The arguements must be passed in the correct order of: seconds, mins, hours.
+	let l = arguments.length;
+	for (let i = 0; i < l; i++)
+		set_time(i, arguments[i])
+}
+
+function set_time(type, time) {
+	switch (type) {
+		case 0: case 's': document.getElementById('sec').innerHTML = time; break;
+		case 1: case 'm': document.getElementById('min').innerHTML = time; break;
+		case 2: case 'h': document.getElementById('hrs').innerHTML = time; break;
+		default: console.log('Error! Invalid arguement passed into set_time function');
+	}
+}
