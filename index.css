@@ -1,0 +1,78 @@
+body {
+	max-width: 95vw;
+}
+
+* {
+	font-family: 'Catamaran', sans-serif;
+	font-size: 1em;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	color: #7b7b7b;
+	text-decoration: none;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns:
+	1fr 4fr 1fr;
+	grid-template-rows: repeat(5, auto);
+	grid-template-areas:
+		". title ."
+		". clock ."
+		". create-pz ."
+		". pzs ."
+		". footer .";
+}
+
+.title {
+	font-size: 1.6em;
+	grid-area: title;
+}
+
+.nav-bar {
+	grid-area: nav-bar;
+	margin: auto;
+	margin-top: 0px;
+	overflow: initial;
+}
+
+.clock { grid-area: clock; }
+#create-new-pz { grid-area: create-pz; }
+#PZ-Container { grid-area: pzs; }
+#PZ-Container > table {
+	border: #f46bb1;
+}
+
+.footer {
+	grid-area: footer;
+	margin-left: 3em;
+}
+
+/* Overwrite all changes that you dont want! */
+@media screen and (max-width: 70em) {
+	/* Resize image and Resize to 2 columns */
+	.grid-container {
+		/* grid-template-columns: 1fr 3fr; */
+		grid-template-columns: auto auto;
+		grid-template-areas:
+			"title ."
+			"clock ."
+			"create-pz ."
+			"pzs ."
+			"footer .";
+	}
+}
+
+@media screen and (max-width: 58em) {
+	/* Hide image and contact-me icons. Resize to 1 column */
+	.grid-container {
+		grid-template-columns: auto;
+		grid-template-areas:
+			"title"
+			"clock"
+			"create-pz"
+			"pzs"
+			"footer";
+	}
+}

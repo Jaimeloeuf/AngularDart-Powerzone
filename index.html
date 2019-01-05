@@ -13,36 +13,58 @@
 </head>
 
 <body id="top" class="grid-container">
-	<form>
-		<input type="text" placeholder="Hours">
-		<input type="text" placeholder="Minutes">
-		<input type="text" placeholder="Seconds">
-		<input type="submit" placeholder="Submit" value="Submit">
+	<div class="clock">
+		<span id="cur-time"></span><br> <!-- Current unix/epoch time in ms -->
+	</div>
+
+	<!-- Fix the positioning and get rid of all the line breaks with br tag -->
+
+	<form id="create-new-pz">
+		<br>
+		<input type="number" placeholder="Hours">
+		<input type="number" placeholder="Minutes">
+		<input type="number" placeholder="Seconds">
+		<br><br>
+		<button id="setBtn" onclick="setTime()">Set Time</button>
+		<button id="startBtn" onclick="start()">Start PZ</button>
+		<button id="resetBtn" onclick="reset()">Reset fields</button>
+		<br><br>
 	</form>
 
-	<button id="setBtn" onclick="setTime()"></button>
-	<button id="startBtn" onclick="start()"></button>
-	<button id="resetBtn" onclick="reset()"></button>
 
-
-	<div id="PZ-Display-Container">
-		<!-- Create new PZ everytime abv button is pressed and populate a display here -->
-
-		<span id="cur-time"></span><br>
-
-		<!-- Standard Powerzone: 45 Min PowerZone + 15 Min Break
+	<!-- Standard Powerzone: 45 Min PowerZone + 15 Min Break
 		<button onclick="start_std_pz();">Start Standard PowerZone</button> -->
 
-		<div id="current-countdown">
-			<table>
-				td
-			</table>
-			Current Zone is: <span id="zone-type"></span><br>
-			Minutes: <span id="min"></span><br>
-			Seconds: <span id="sec"></span><br>
-			Status: <span id="alert">Pending</span><br>
-		</div>
+	<div id="PZ-Container">
+		<!-- Create new PZ everytime abv button is pressed and populate a display here -->
+
+
+		Current Zone is: id<span id="zone-type"></span><br>
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Mins</th>
+				<th>Secs</th>
+				<th>Status</th>
+			</tr>
+			<tr>
+				<td><span id="id">1</span><br></td>
+				<td><span id="min"></span><br></td>
+				<td><span id="sec"></span><br></td>
+				<td><span id="alert">Pending</span><br></td>
+			</tr>
+		</table>
 	</div>
+
+
+	<footer class="footer">
+		<pre style="font-weight: bold;">
+		Created by <a href="https://github.com/Jaimeloeuf">Jaime</a>
+		<a href="#top">Back to Top ^</a>
+		&copy;JaimeLoeuf
+		&copy;JJ	2018
+		</pre>
+	</footer>
 </body>
 
 </html>
