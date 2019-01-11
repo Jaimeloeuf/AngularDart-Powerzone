@@ -1,15 +1,22 @@
 'use strict'; // Enforce use of strict verion of JavaScript
 
 // Utility functions
-const log = (dat) => console.log(dat);
+const l = (dat) => console.log(dat);
 
 function setTime() {
+	l('hi')
+	l(new FormData(document.querySelector('form')))
+	// l(document.getElementById('m').innerHTML) // Seconds
+	// l((document.getElementById('s').innerHTML, 10) * 1000) // Seconds
+
 	// Construct a duration object and convert all time to milliseconds
 	// User can set time of up to seconds precision level, and up to 59 mins and 59 seconds
 	duration = {
 		's': parseInt(document.getElementById('s'), 10) * 1000, // Seconds
 		'm': parseInt(document.getElementById('m'), 10) * 1000 * 60, // Minutes
 	}
+	// l(duration);
+	
 	let totalTime = 0;
 	duration.forEach(time => totalTime += duration[time]); // Get the total time by looping through all the keys in object
 
@@ -24,6 +31,7 @@ function reset() {
 	document.getElementsByClassName('duration').map((val, index, arr) => arr[index].innerHTML = '');
 }
 
+/* Function to set the current time in ms. */
 const setCurTime = () => (document.getElementById('cur-time').innerHTML = `The current time now is: ${Date.now()}`);
 
 async function start_std_pz() {
@@ -70,7 +78,14 @@ function del_timer() {
 	document.getElementById('PZ-table').deleteRow(0); // Deletes first row
 }
 
+/* Some examples to try
 
+function incrementer(inc) { return function (num) { return num + inc; } }
+
+const incBy5 = incrementer(5);
+const six = incBy5 (1);
+const nine =incBy5(4);
+ */
 
 
 function applyState(s, m, h) {
@@ -86,7 +101,7 @@ function set_time(type, time) {
 		case 0: case 's': document.getElementById('sec').innerHTML = time; break;
 		case 1: case 'm': document.getElementById('min').innerHTML = time; break;
 		case 2: case 'h': document.getElementById('hrs').innerHTML = time; break;
-		default: console.log('Error! Invalid arguement passed into set_time function');
+		default: l('Error! Invalid arguement passed into set_time function');
 	}
 }
 
@@ -121,7 +136,5 @@ function countDown(duration) {
 window.addEventListener('load', () => {
 	setCurTime(); // Set current time the moment the page loads
 	setInterval(setCurTime, 1000); // Call function to set Current Time every second
-	// countdown(Date.now() + 10000);
-	// countdown(Date.now() + 4000);
 	countDown(60 * 5);
 });

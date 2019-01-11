@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Catamaran:400,800');
+
 body {
 	max-width: 95vw;
 }
@@ -16,11 +18,13 @@ a, a:link, a:visited, a:hover, a:active {
 	display: grid;
 	grid-template-columns:
 	1fr 4fr 1fr;
-	grid-template-rows: repeat(5, auto);
+	grid-template-rows: repeat(7, auto);
 	grid-template-areas:
 		". title ."
+		". code-link ."
 		". clock ."
 		". create-pz ."
+		". controls ."
 		". pzs ."
 		". footer .";
 }
@@ -28,17 +32,20 @@ a, a:link, a:visited, a:hover, a:active {
 .title {
 	font-size: 1.6em;
 	grid-area: title;
+	margin: auto;
+	margin-top: 2.4em;
+	color: #037f01;
 }
 
-.nav-bar {
-	grid-area: nav-bar;
-	margin: auto;
-	margin-top: 0px;
-	overflow: initial;
+#source-code-link {
+	grid-area: code-link;
+	text-align: center;
 }
+#source-code-link > a { color: #037f01; }
 
 .clock { grid-area: clock; }
 #create-new-pz { grid-area: create-pz; }
+#controls { grid-area: controls; }
 #PZ-Container { grid-area: pzs; }
 #PZ-Container > table, th, td {
 	border: 1px solid #f46bb1;
@@ -59,25 +66,25 @@ th, td {
 	/* Resize image and Resize to 2 columns */
 	.grid-container {
 		/* grid-template-columns: 1fr 3fr; */
-		grid-template-columns: auto auto;
+		/* grid-template-columns: auto auto;
 		grid-template-areas:
 			"title ."
 			"clock ."
 			"create-pz ."
 			"pzs ."
-			"footer .";
+			"footer ."; */
 	}
 }
 
 @media screen and (max-width: 58em) {
 	/* Hide image and contact-me icons. Resize to 1 column */
 	.grid-container {
-		grid-template-columns: auto;
+		/* grid-template-columns: auto;
 		grid-template-areas:
 			"title"
 			"clock"
 			"create-pz"
 			"pzs"
-			"footer";
+			"footer"; */
 	}
 }

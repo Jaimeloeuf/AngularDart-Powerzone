@@ -13,6 +13,9 @@
 </head>
 
 <body id="top" class="grid-container">
+	<h3 class="title">Hello and thank you for trying my Power Zone app!</h3>
+	<p id="source-code-link">Source code can be found on my Github <a href="https://github.com/Jaimeloeuf/Powerzone">Repo</a>!</p>
+
 	<div class="clock">
 		<span id="cur-time"></span><br> <!-- Current unix/epoch time in ms -->
 	</div>
@@ -20,13 +23,14 @@
 	<!-- Fix the positioning and get rid of all the line breaks with br tag -->
 
 	<form id="create-new-pz">
-		<br>
-		The values will be assumed to 0 if none is entered<br>
-		<input type="number" placeholder="Hours">
-		<input type="number" placeholder="Minutes" autofocus>
-		<input type="number" placeholder="Seconds">
-		<input type="text" placeholder="Name?">
-		<br><br>
+		<br>The values will be assumed to 0 if none is entered<br>
+		<input type="number" id="h" placeholder="Hours">
+		<input type="number" id="m" placeholder="Minutes" autofocus>
+		<input type="number" id="s" placeholder="Seconds">
+		<input type="text" id="n" placeholder="Name?"><br><br>
+	</form>
+
+	<div id="controls">
 		<button id="setBtn" onclick="setTime()">Set Time</button>
 		<button id="startBtn" onclick="start()">Start PZ</button>
 		<button id="resetBtn" onclick="reset()">Reset fields</button>
@@ -36,9 +40,7 @@
 		<button onclick="start_std_pz();">Start Standard PowerZone</button>
 
 		<br><br>
-	</form>
-
-
+	</div>
 
 	<div id="PZ-Container">
 		<!-- Create new PZ everytime abv button is pressed and populate a display here -->
