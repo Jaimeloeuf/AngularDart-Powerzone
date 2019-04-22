@@ -1,13 +1,13 @@
 'use strict'; // Enforce use of strict verion of JavaScript
 
-// Utility functions
-const l = (dat) => console.log(dat);
+// Utility function binding
+const print = console.log;
 
 function setTime() {
-	l('hi')
-	l(new FormData(document.querySelector('form')))
-	// l(document.getElementById('m').innerHTML) // Seconds
-	// l((document.getElementById('s').innerHTML, 10) * 1000) // Seconds
+	print('Test point')
+	print(new FormData(document.querySelector('form')))
+	// print(document.getElementById('m').innerHTML) // Seconds
+	// print((document.getElementById('s').innerHTML, 10) * 1000) // Seconds
 
 	// Construct a duration object and convert all time to milliseconds
 	// User can set time of up to seconds precision level, and up to 59 mins and 59 seconds
@@ -15,7 +15,7 @@ function setTime() {
 		's': parseInt(document.getElementById('s'), 10) * 1000, // Seconds
 		'm': parseInt(document.getElementById('m'), 10) * 1000 * 60, // Minutes
 	}
-	// l(duration);
+	// print(duration);
 	
 	let totalTime = 0;
 	duration.forEach(time => totalTime += duration[time]); // Get the total time by looping through all the keys in object
@@ -101,7 +101,7 @@ function set_time(type, time) {
 		case 0: case 's': document.getElementById('sec').innerHTML = time; break;
 		case 1: case 'm': document.getElementById('min').innerHTML = time; break;
 		case 2: case 'h': document.getElementById('hrs').innerHTML = time; break;
-		default: l('Error! Invalid arguement passed into set_time function');
+		default: print('Error! Invalid arguement passed into set_time function');
 	}
 }
 
